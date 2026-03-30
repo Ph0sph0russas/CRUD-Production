@@ -1,5 +1,5 @@
 <?php
-require_once "TwigBaseController.php"; // импортим TwigBaseController
+require_once "TwigBaseController.php"; 
 
 class MainController extends TwigBaseController {
     public $template = "main.twig";
@@ -17,6 +17,10 @@ class MainController extends TwigBaseController {
                 "url_title" => "magic_carpet",
             ],
         ];
+        $query = $this->pdo->query("SELECT * FROM extreme_gears");
+        
+        $context['extreme_gears'] = $query->fetchAll();
+
         return $context;
     }
 }

@@ -1,16 +1,26 @@
 {% extends "__layout.twig" %}
 
 {% block content %}
-{% import "marcoses.twig" as macro %}
-{% for item in menu_items %}
 
-    <ul class="list-group list-group-horizontal">
-<li class = "list-group-item w-100">
-   {{ macro.btn(item.title,"/"~ item.url_title, true) }}  
-   {{ macro.btn("Картинка","/"~ item.url_title ~"/image", false, "warning") }}  
-   {{ macro.btn("Описание","/"~ item.url_title ~"/info", false, "warning") }}  
-</li>
+<ul class="list-group list-group-horizontal justify-content-center gap-3">
+    {% for object in extreme_gears %} 
+    <li class="list-group-item">
+        <ul class="list-group">
+            <li class="list-group-item">
+            <img src ="{{object.image}}" style = "width:200px; height:150px;">
+            </li>
+            <a href="" class="btn btn-primary w-100" style="margin-top: 1em">{{object.title}}</a>
+            <div class="d-flex justify-content-center">
+                <a href="" class="p-2">Картинка</a>
+                <a href="" class="p-2">Описание</a>
+            </div>
+        </ul>
+    </li>
+    <div class="vr"></div>
+    {% endfor %}
 </ul>
-{% endfor %}
+
+
+
 
 {% endblock %}
