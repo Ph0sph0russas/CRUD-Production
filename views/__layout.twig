@@ -18,12 +18,11 @@
         <li class="nav-item">
           <a class="nav-link {{url_title == NULL ? 'active'}}" aria-current="page" href="/">Главная</a>
         </li>
+        {% for type in types %}
         <li class="nav-item">
-          <a class="nav-link {{url_title == "chaos_emeralds" ? 'active'}}" href="/chaos_emeralds">Изумруды Хаоса</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{url_title == "magic_carpet" ? 'active'}}" href="/magic_carpet"/>Магический Ковёр</a>
-        </li>
+        <a class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</a>
+    </li>
+        {% endfor %}
       </ul> 
     </div>
   </div>

@@ -35,13 +35,12 @@ class Router {
     
     public function get_or_default($default_controller) {
         $url = $_SERVER["REQUEST_URI"]; 
-
-        
+        $path = parse_url($url, PHP_URL_PATH);
         $controller = $default_controller;
         $matches=[]; 
         foreach($this->routes as $route) {
            
-            if (preg_match($route->route_regexp, $url,$matches)) {
+            if (preg_match($route->route_regexp, $path,$matches)) {
                 
                 $controller = $route->controller;
                

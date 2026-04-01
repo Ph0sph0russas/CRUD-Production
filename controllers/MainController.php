@@ -1,26 +1,25 @@
 <?php
 
-
-class MainController extends TwigBaseController {
+require_once "BaseGearsTwigController.php";
+class MainController extends BaseGearsTwigController {
     public $template = "main.twig";
     public $title = "Главная";
     public function getContext() : array
     {
         $context = parent::getContext(); 
-        $context['menu_items']=[
-            [
-                "title" =>"Изумруды Хаоса",
-                "url_title" => "chaos_emeralds",
-            ],
-            [
-                "title" =>"Магический Ковёр",
-                "url_title" => "magic_carpet",
-            ],
-        ];
-        $query = $this->pdo->query("SELECT * FROM extreme_gears");
         
+        
+        if (isset($_GET['type']))
+            {
+                $query = $this->pdo->prepare    ("SELECT * FROM extreme_gears WHERE type = :type");
+                $query->bindValue("type",$_GET['type']);
+                $query->execute();
+            }
+        else
+            {
+                $query = $this->pdo->query("SELECT * FROM extreme_gears");
+            }
         $context['extreme_gears'] = $query->fetchAll();
-
         return $context;
     }
 }

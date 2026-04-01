@@ -5,18 +5,14 @@
 <ul class="list-group list-group-horizontal justify-content-center gap-3">
     {% for object in extreme_gears %} 
     <li class="list-group-item">
-        <ul class="list-group">
-            <li class="list-group-item">
-            <img src ="{{object.image}}" style = "width:200px; height:150px;">
-            </li>
+            <img src ="{{object.image}}" style = "width:100%; height:150px;">
             <a href="/extreme_gears/{{object.id}}" class="btn btn-primary w-100" style="margin-top: 1em">{{object.title}}</a>
             <div class="d-flex justify-content-center">
                 <a href="/extreme_gears/{{object.id}}/image" class="p-2">Картинка</a>
                 <a href="/extreme_gears/{{object.id}}/info" class="p-2">Описание</a>
             </div>
-        </ul>
     </li>
-    <div class="vr"></div>
+    
     {% endfor %}
 </ul>
 

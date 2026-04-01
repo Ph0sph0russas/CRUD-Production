@@ -14,7 +14,7 @@
     $context = [];
     
     $pdo = new PDO("mysql:host=localhost;dbname=omochao_adviser;charset=utf8", "root", "");
-    
+
     $router = new Router($twig, $pdo);
     $router->add("/", MainController::class);
     $router->add("/extreme_gears/(?P<id>\d+)", ObjectController::class);
