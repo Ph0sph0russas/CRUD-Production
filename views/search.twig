@@ -1,0 +1,43 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Поиск</h1>
+    <form action="" class="row g-4">
+        <div class="col-sm-3">
+        Тип
+        <br>
+        <select class="form-select" name="type">
+            <option value="артефакт">Артефакт</option>
+            <option value="байк">Байк</option>
+            <option value="доска">Доска</option>
+            <option value="все">Все</option>
+        </select>
+        </div>
+        <div class="col-sm-3">
+        Название
+        <br>
+            <input type="text" class="form-control" name="title">
+        </div>
+        <div class="col-sm-3">
+        Описание
+        <br>
+            <input type="text" class="form-control" name="full_description">
+        </div>
+        <div class="col">
+        <br>
+        <button class="btn btn-primary" type="submit">Найти</button>
+        </div>
+       
+    </form>
+    <div class="col-sm-10" style="margin-top:1%;">
+    <ul class="list-group" >
+    {% for object in objects %}
+        
+        <li class = "list-group-item w-100">
+        <a href="/extreme_gears/{{object.id}}"> {{object.title}}</a>
+        </li>
+        
+    {% endfor %}
+    </ul>    
+    </div>
+{% endblock %}
