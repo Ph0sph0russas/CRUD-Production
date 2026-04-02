@@ -5,6 +5,7 @@
     require_once "../controllers/ObjectController.php";
     require_once "../controllers/SearchController.php";
     require_once "../controllers/Controller404.php";
+    require_once "../controllers/ExtremeGearCreateController.php";
     $loader = new \Twig\Loader\FilesystemLoader('../views');
     $twig = new \Twig\Environment($loader,[
         "debug"=>true
@@ -18,6 +19,6 @@
     $router->add("/", MainController::class);
     $router->add("/extreme_gears/(?P<id>\d+)", ObjectController::class);
     $router->add("/search", SearchController::class);
-
+    $router->add("/extreme_gears/create", ExtremeGearCreateController::class);
     
     $router->get_or_default(Controller404::class);
