@@ -4,7 +4,7 @@ class BaseGearsTwigController extends TwigBaseController
     public function getContext(): array
     {
         $context = parent::getContext();
-        $query = $this->pdo->query("SELECT DISTINCT name FROM object_types ORDER BY 1");
+        $query = $this->pdo->query("Select DISTINCT name from object_types order by 1");
         $types = $query->fetchAll();
         $context['types']=$types;
         return $context;

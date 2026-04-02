@@ -8,6 +8,8 @@
     require_once "../controllers/ExtremeGearCreateController.php";
     require_once "../controllers/TypeOfGearCreateController.php";
     require_once "../controllers/ExtremeGearDeleteController.php";
+    require_once "../controllers/ExtremeGearUpdateController.php";
+    
     $loader = new \Twig\Loader\FilesystemLoader('../views');
     $twig = new \Twig\Environment($loader,[
         "debug"=>true
@@ -24,4 +26,5 @@
     $router->add("/extreme_gears/createObject", ExtremeGearCreateController::class);
     $router->add("/extreme_gears/createType", TypeOfGearCreateController::class);
     $router->add("/extreme_gears/delete", ExtremeGearDeleteController::class);
+    $router->add("/extreme_gears/(?P<id>\d+)/edit", ExtremeGearUpdateController::class);
     $router->get_or_default(Controller404::class);
