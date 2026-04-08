@@ -16,6 +16,7 @@ EOL;
         parent::get($context);
 
     }
+
     public function post(array $context){
 
         $title = $_POST['title'];
@@ -37,20 +38,36 @@ EOL;
         $name =  $_FILES['image']['name'];
         move_uploaded_file($tmp_name, "../public/media/$name");
         $image_url = "/media/$name";
-
-        $sql = <<<EOL
+        if($image_url=="/media/")
+        {
+            $sql = <<<EOL
+UPDATE extreme_gears
+SET title= :title, description= :description, type_id= :type, info= :info
+WHERE id= :id
+EOL;
+            $query = $this->pdo->prepare($sql);
+            $query->bindValue("title", $title);
+            $query->bindValue("description", $description);
+            $query->bindValue("type", $type);
+            $query->bindValue("info", $info);
+            $query->bindValue("id", $id);
+        }
+        else
+        {
+            $sql = <<<EOL
 UPDATE extreme_gears
 SET title= :title, description= :description, type_id= :type, info= :info, gear_image= :image_url
 WHERE id= :id
 EOL;
+            $query = $this->pdo->prepare($sql);
+            $query->bindValue("title", $title);
+            $query->bindValue("description", $description);
+            $query->bindValue("type", $type);
+            $query->bindValue("info", $info);
+            $query->bindValue("image_url", $image_url);
+            $query->bindValue("id", $id);
+        }
         
-        $query = $this->pdo->prepare($sql);
-        $query->bindValue("title", $title);
-        $query->bindValue("description", $description);
-        $query->bindValue("type", $type);
-        $query->bindValue("info", $info);
-        $query->bindValue("image_url", $image_url);
-        $query->bindValue("id", $id);
         $query->execute();
 
         $context['message'] = 'Вы успешно изменили объект!';

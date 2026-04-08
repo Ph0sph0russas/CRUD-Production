@@ -12,19 +12,15 @@
     Описание
 </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/extreme_gears/{{id}}/edit">
-    Редактировать
-</a>
-  </li>
 </ul>
 <div class = "list-group">
     <li class = "list-group-item w-100 p-5">
     {% if image %}
     <img src="{{ image }}">
-    {% endif %}
-    {% if info %}
+    {% elseif info %}
     {{info}}
+    {% else %}
+    Выберите пункт для отображения.
     {% endif %}
     {% block objectContent %}
  {% endblock %}

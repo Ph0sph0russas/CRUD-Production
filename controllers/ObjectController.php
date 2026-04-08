@@ -11,18 +11,18 @@ class ObjectController extends BaseGearsTwigController {
         $query->execute();
         $data = $query->fetch();
         if (isset($_GET['show']))
+        {
+            if ($_GET['show']==='image')
             {
-                if ($_GET['show']==='image')
-                    {
-                        $context['image']=$data['gear_image'];
-                        $context['is_image']=1;
-                    }
-                else if ($_GET['show']==='info')
-                    {
-                        $context['info']=$data['info'];
-                        $context['is_info']=1;
-                    }
+                $context['image']=$data['gear_image'];
+                $context['is_image']=1;
             }
+            else if ($_GET['show']==='info')
+            {
+                $context['info']=$data['info'];
+                $context['is_info']=1;
+            }
+        }
         $context['description'] = $data['description'];
         $context['id']=$data['id'];
         return $context;

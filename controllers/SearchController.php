@@ -18,13 +18,13 @@ WHERE (:title = '' OR title like CONCAT('%', :title, '%'))
     and ((name = :type) OR :type='все')
     and (:full_description='' OR info like CONCAT('%', :full_description, '%'))
 EOL;
-    $query=$this->pdo->prepare($sql);
-    $query->bindValue("title", $title);
-    $query->bindValue("type", $type);
-    $query->bindValue("full_description",$full_description);
-    $query->execute();
-    
-    $context['objects']=$query->fetchAll();
-    return $context;
+        $query=$this->pdo->prepare($sql);
+        $query->bindValue("title", $title);
+        $query->bindValue("type", $type);
+        $query->bindValue("full_description",$full_description);
+        $query->execute();
+        
+        $context['objects']=$query->fetchAll();
+        return $context;
     }
 }

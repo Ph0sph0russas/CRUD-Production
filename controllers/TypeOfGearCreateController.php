@@ -3,10 +3,12 @@ require_once "BaseGearsTwigController.php";
 
 class typeOfGearCreateController extends BaseGearsTwigController {
     public $template = "type_of_gear_create.twig";
+    
     public function get(array $context)
     {
         parent::get($context);
     }
+
     public function post(array $context)
     {
         $name = $_POST['typeName'];

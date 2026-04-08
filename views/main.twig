@@ -5,15 +5,25 @@
 <ul class="list-group list-group-horizontal justify-content-center gap-3 flex-wrap">
     {% for object in extreme_gears %} 
     <li class="list-group-item text-center" style = "border-left: 1px solid rgba(0,0,0,.125);">
+        <div class="position-absolute" style="left:4px; top:4px;">
+            <a href="/extreme_gears/{{ object.id }}/edit">
+            <button type="submit" class="btn btn-info">
+                    <i class ="fas fa-edit"></i>
+            </button>
+            </a>
+        </div>
         <div class="position-absolute" style="right:4px; top:4px;">
             <form action="/extreme_gears/delete" method="POST">
+                
                 <input type="hidden" name="id" value="{{ object.id }}">
                 <button type="submit" class="btn btn-danger">
                     <i class="fas fa-times"></i>
                 </button>
+                
             </form>
         </div>
-            <img src ="{{object.gear_image}}" style = "width:80%; height:150px;">
+
+            <img src ="{{object.gear_image}}" style = "width:170px; height:150px;">
             <a href="/extreme_gears/{{object.id}}" class="btn btn-primary w-100" style="margin-top: 1em">{{object.title}}</a>
             <div class="d-flex justify-content-center">
                 <a href="/extreme_gears/{{object.id}}?show=image" class="p-2">Картинка</a>
