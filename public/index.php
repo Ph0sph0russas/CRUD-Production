@@ -9,7 +9,7 @@
     require_once "../controllers/TypeOfGearCreateController.php";
     require_once "../controllers/ExtremeGearDeleteController.php";
     require_once "../controllers/ExtremeGearUpdateController.php";
-    
+    require_once "../middlewares/LoginRequiredMiddleware.php";
     $loader = new \Twig\Loader\FilesystemLoader('../views');
     $twig = new \Twig\Environment($loader,[
         "debug"=>true
@@ -23,8 +23,15 @@
     $router->add("/", MainController::class);
     $router->add("/extreme_gears/(?P<id>\d+)", ObjectController::class);
     $router->add("/search", SearchController::class);
-    $router->add("/extreme_gears/createObject", ExtremeGearCreateController::class);
-    $router->add("/extreme_gears/createType", TypeOfGearCreateController::class);
-    $router->add("/extreme_gears/delete", ExtremeGearDeleteController::class);
-    $router->add("/extreme_gears/(?P<id>\d+)/edit", ExtremeGearUpdateController::class);
+
+
+
+    $router->add("/extreme_gears/createObject", ExtremeGearCreateController::class)
+            ->middleware(new LoginRequiredMiddleware());
+    $router->add("/extreme_gears/createType", TypeOfGearCreateController::class)
+            ->middleware(new LoginRequiredMiddleware());
+    $router->add("/extreme_gears/delete", ExtremeGearDeleteController::class)
+            ->middleware(new LoginRequiredMiddleware());
+    $router->add("/extreme_gears/(?P<id>\d+)/edit", ExtremeGearUpdateController::class)
+            ->middleware(new LoginRequiredMiddleware());
     $router->get_or_default(Controller404::class);
