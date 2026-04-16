@@ -49,7 +49,7 @@ class Router {
         $url = $_SERVER["REQUEST_URI"]; 
         $path = parse_url($url, PHP_URL_PATH);
         $controller = $default_controller;
-$newRoute = null;
+        $newRoute = null;
 
         $matches=[]; 
         foreach($this->routes as $route) {
