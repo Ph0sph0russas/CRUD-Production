@@ -11,6 +11,7 @@ abstract class BaseController {
         $this->params = $params;
     }
     public function getContext(): array {
+        
         return []; 
     }
     

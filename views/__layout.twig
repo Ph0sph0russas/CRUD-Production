@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,12 +42,20 @@
   </div>
 </nav>
 
-
+<div style="display:flex;">
 <div class="container" style ="padding-top: 20px;">
     {% block content %}
     {% endblock %}
 
 </div>
-
+<div style="padding-right: 2%; padding-top: 1%;">Последние страницы, которые вы посетили: <br>
+  {% for n in urls %}
+  {% set firstColor = 150 + loop.index*10 %}
+  <div class="container-fluid p-2 rounded" style="background-color: rgb({{ firstColor }}, 160, 236); margin-top:1%;">
+   <a href="{{n}}" style="color:black;">{{n}}</a><br>
+   </div>
+  {% endfor %}
+</div>
+</div>
 </body>
 </html>

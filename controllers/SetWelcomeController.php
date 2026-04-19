@@ -8,7 +8,7 @@ class SetWelcomeController extends BaseController {
             $_SESSION['messages']=[];
         }
         array_push($_SESSION['messages'], $_GET['message']);
-        
+    
         $url = $_SERVER['HTTP_REFERER'];
         header("Location: $url");
         exit;
