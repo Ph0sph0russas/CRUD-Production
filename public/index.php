@@ -11,6 +11,7 @@
     require_once "../controllers/ExtremeGearUpdateController.php";
     require_once "../middlewares/LoginRequiredMiddleware.php";
     require_once "../controllers/SetWelcomeController.php";
+    require_once "../controllers/LoginController.php";
     $loader = new \Twig\Loader\FilesystemLoader('../views');
     $twig = new \Twig\Environment($loader,[
         "debug"=>true
@@ -21,9 +22,12 @@
     $pdo = new PDO("mysql:host=localhost;dbname=omochao_adviser;charset=utf8", "root", "");
 
     $router = new Router($twig, $pdo);
-    $router->add("/", MainController::class);
-    $router->add("/extreme_gears/(?P<id>\d+)", ObjectController::class);
-    $router->add("/search", SearchController::class);
+    $router->add("/", MainController::class)
+           ->middleware(new LoginRequiredMiddleware());
+    $router->add("/extreme_gears/(?P<id>\d+)", ObjectController::class)
+           ->middleware(new LoginRequiredMiddleware());
+    $router->add("/search", SearchController::class)
+           ->middleware(new LoginRequiredMiddleware());
 
 
 
@@ -35,7 +39,9 @@
             ->middleware(new LoginRequiredMiddleware());
     $router->add("/extreme_gears/(?P<id>\d+)/edit", ExtremeGearUpdateController::class)
             ->middleware(new LoginRequiredMiddleware());
-    $router->add("/set-welcome/", SetWelcomeController::class);
+    $router->add("/set-welcome/", SetWelcomeController::class)
+           ->middleware(new LoginRequiredMiddleware());
+    $router->add("/login", LoginController::class);
     $router->get_or_default(Controller404::class);
 
 
