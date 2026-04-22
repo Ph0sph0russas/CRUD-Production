@@ -14,28 +14,6 @@ class TwigBaseController extends BaseController {
     {
         $context = parent::getContext(); 
         $context['title'] = $this->title;
-
-
-        $url_from_server=urldecode($_SERVER["REQUEST_URI"]);
-        
-        if (!isset($_SESSION['urls'])){
-            $_SESSION['urls']=[];
-        }
-
-        if(count($_SESSION['urls'])==10)
-        {
-            array_shift($_SESSION['urls']);
-            array_push($_SESSION['urls'], $url_from_server);
-            
-        }
-        else
-        {
-            array_push($_SESSION['urls'], $url_from_server);
-
-        }
-        
-
-        
         return $context;
     }
     

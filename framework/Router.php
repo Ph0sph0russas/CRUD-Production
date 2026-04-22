@@ -5,7 +5,7 @@ class Route {
     public $controller;
     public array $middlewareList = [];
 
-
+    
     public function middleware(BaseMiddleware $m) : Route {
         array_push($this->middlewareList, $m);
         return $this;
